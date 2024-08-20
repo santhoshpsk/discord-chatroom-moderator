@@ -14,9 +14,16 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: Docker@2
+      displayName: Docker login
+      inputs:
+        containerRegistry: 'santypsk-dockerhub'
+        command: 'login'
+
+    - task: Docker@2
       inputs:
         containerRegistry: 'santypsk-dockerhub'
         repository: 'santypsk'
         buildContext: 'src/'
         command: 'build'
         Dockerfile: 'src/Dockerfile'
+  
