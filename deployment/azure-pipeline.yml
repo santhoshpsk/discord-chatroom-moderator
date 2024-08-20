@@ -26,4 +26,6 @@ stages:
         buildContext: 'src/'
         command: 'build'
         Dockerfile: 'src/Dockerfile'
+        addPipelineData: false
+        addBaseImageData: false
   
