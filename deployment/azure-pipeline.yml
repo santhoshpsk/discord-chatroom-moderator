@@ -1,0 +1,22 @@
+---
+trigger: none
+
+resources:
+- repo: self
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'santypsk-dockerhub'
+        repository: 'santypsk'
+        buildContext: 'src/'
+        command: 'build'
+        Dockerfile: 'Dockerfile'
