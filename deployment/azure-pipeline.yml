@@ -19,4 +19,4 @@ stages:
         repository: 'santypsk'
         buildContext: 'src/'
         command: 'build'
-        Dockerfile: 'Dockerfile'
+        Dockerfile: 'src/Dockerfile'
