@@ -15,11 +15,8 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        containerRegistry: 'santypsk-dockerhub'
-        repository: 'santypsk'
+        repository: 'chatroom-moderator'
         buildContext: 'src/'
         command: 'build'
         Dockerfile: 'src/Dockerfile'
-        addPipelineData: false
-        addBaseImageData: false
-  
+        tags: 'latest'
