@@ -20,6 +20,8 @@ stages:
         regionName: 'ap-south-1'
         scriptType: 'inline'
         inlineScript: |
+          ls -l
+          cd iac
           terraform init
 
     - task: AWSShellScript@1
@@ -32,6 +34,7 @@ stages:
 
   - job: Approval
     displayName: Approval
+    dependsOn: Plan
     pool: server
     steps:
     - task: ManualValidation@0
@@ -42,6 +45,7 @@ stages:
 
   - job: ApplyChanges
     displayName: Apply Changes
+    dependsOn: Approval
     pool:
       vmImage: ubuntu-latest
     steps:
