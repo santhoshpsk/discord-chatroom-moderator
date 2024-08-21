@@ -29,6 +29,6 @@ stages:
         regionName: 'ap-south-1'
         sourceImageName: 'chatroom-moderator'
         sourceImageTag: 'latest'
-        repositoryName: '975049939172.dkr.ecr.ap-south-1.amazonaws.com/chatroom-moderator-test'
+        repositoryName: 'chatroom-moderator-test'
         pushTag: '$(Build.SourceVersion)'
         removeDockerImage: true
