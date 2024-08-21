@@ -5,8 +5,8 @@ resources:
 - repo: self
 
 stages:
-- stage: Build
-  displayName: Build image
+- stage: BuildAndPush
+  displayName: Build and Push image to ECR
   jobs:
   - job: Build
     displayName: Build
