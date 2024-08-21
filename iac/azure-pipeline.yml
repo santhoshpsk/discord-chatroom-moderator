@@ -15,12 +15,12 @@ stages:
     steps:
 
     - task: AWSShellScript@1
+      displayName: Terraform Plan
       inputs:
         awsCredentials: 'aws-user'
         regionName: 'ap-south-1'
         scriptType: 'inline'
         inlineScript: |
-          ls -l
           cd iac
           terraform init
           terraform plan
@@ -43,10 +43,12 @@ stages:
       vmImage: ubuntu-latest
     steps:
     - task: AWSShellScript@1
+      displayName: Terraform apply changes
       inputs:
         awsCredentials: 'aws-user'
         regionName: 'ap-south-1'
         scriptType: 'inline'
         inlineScript: |
+          cd iac
           terraform init
           terraform apply -auto-approve
