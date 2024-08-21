@@ -5,11 +5,11 @@ resources:
 - repo: self
 
 stages:
-- stage: BuildAndPush
-  displayName: Build and Push image to ECR
+- stage: PlanAndApply
+  displayName: Terraform Plan and Apply
   jobs:
-  - job: Build
-    displayName: Build
+  - job: Plan
+    displayName: Terraform Plan
     pool:
       vmImage: ubuntu-latest
     steps:
