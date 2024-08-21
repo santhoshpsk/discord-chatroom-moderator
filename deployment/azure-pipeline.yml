@@ -20,3 +20,13 @@ stages:
         command: 'build'
         Dockerfile: 'src/Dockerfile'
         tags: 'latest'
+
+    - task: ECRPushImage@1
+      inputs:
+        awsCredentials: 'aws-user'
+        regionName: 'ap-south-1'
+        sourceImageName: 'chatroom-moderator'
+        sourceImageTag: 'latest'
+        repositoryName: '975049939172.dkr.ecr.ap-south-1.amazonaws.com/chatroom-moderator-test'
+        pushTag: '$(Build.SourceVersion)'
+        removeDockerImage: true
