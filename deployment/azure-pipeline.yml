@@ -29,6 +29,6 @@ stages:
         regionName: 'ap-south-1'
         sourceImageName: 'chatroom-moderator'
         sourceImageTag: 'latest'
-        repositoryName: 'chatroom-moderator-test'
+        repositoryName: 'chatroom-moderator-repository'
         pushTag: '$(Build.SourceVersion)'
         removeDockerImage: true

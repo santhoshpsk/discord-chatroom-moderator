@@ -7,6 +7,7 @@ from io import BytesIO
 from PIL import Image
 
 rekog_client = boto3.client("rekognition")
+ssm_client = boto3.client("ssm")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -56,5 +57,7 @@ class MessageHandler(discord.Client):
 
 client = MessageHandler(intents=intents)
 
+botToken = ssm_client.get_parameter(Name="/discord/bot/secret-token")["Parameter"]["Value"]
 
-client.run("token")
+
+client.run(botToken)
