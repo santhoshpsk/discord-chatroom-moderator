@@ -34,7 +34,7 @@ resource "aws_ecr_repository" "main-ecr-repo" {
 resource "aws_ssm_parameter" "discord-bot-secret-token" {
   name = "/discord/bot/secret-token"
   type = "SecureString"
-  value = ""
+  value = "place holder"
 }
 
 resource "aws_iam_role" "ecs-task-role" {
