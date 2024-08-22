@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "terraform-state-bucket-santhosh"
+    bucket         = "terraform-state-bucket-santhosh30"
     region         = "ap-south-1"
     key            = "discord-chatroom-moderator/deployment/terraform.tfstate"
     encrypt        = true
