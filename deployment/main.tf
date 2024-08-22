@@ -40,4 +40,5 @@ resource "aws_ecs_service" "ecs-main-task-service" {
   name = "chatroom-moderator-service"
   cluster = var.ecs-cluster-arn
   task_definition = aws_ecs_task_definition.ecs-main-task-definition.arn
+  desired_count = 1
 }
