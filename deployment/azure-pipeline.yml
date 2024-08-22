@@ -54,7 +54,6 @@ stages:
         scriptType: 'inline'
         inlineScript: |
           cd iac
-          terraform init
           echo "##vso[task.setvariable variable=ECS_TASK_ROLE_ARN]$(terraform output -raw ecs-task-role-arn)"
           echo "##vso[task.setvariable variable=ECS_CLUSTER_ARN]$(terraform output -raw ecs-cluster-arn)"
           echo "##vso[task.setvariable variable=ECR_REPO_URL]$(terraform output -raw ecr-repo-url)"
