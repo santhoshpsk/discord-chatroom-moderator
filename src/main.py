@@ -35,9 +35,13 @@ class MessageHandler(discord.Client):
                     new_image_data_size = sys.getsizeof(image_data)/1024/1024
                     print(f"Image size after resize: {round(new_image_data_size,2)} MB")
                     output.seek(0)
-                responce = rekog_client.detect_moderation_labels(Image={
-                    "Bytes": image_data
-                })
+                
+                try:
+                    responce = rekog_client.detect_moderation_labels(Image={
+                        "Bytes": image_data
+                    })
+                except BaseException as exp:
+                    await message.reply(str(exp), mention_author=True)    
 
                 await message.reply(str(responce), mention_author=True)
 
