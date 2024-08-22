@@ -31,7 +31,7 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
     }
   ])
   track_latest = true
-  requires_compatibilities = "FARGATE"
+  requires_compatibilities = ["FARGATE"]
   task_role_arn = var.ecs-task-role-arn
 }
 
