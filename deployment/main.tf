@@ -26,10 +26,11 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
       name      = "main-container"
       essential = true
       image     = "${var.ecr-repo-url}:${var.ecs-task-image-tag}"
-      cpu       = 256
-      memory    = 512
+
     }
   ])
+  cpu                      = 256
+  memory                   = 512
   track_latest             = true
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
