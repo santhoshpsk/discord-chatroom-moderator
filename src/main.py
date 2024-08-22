@@ -41,9 +41,7 @@ class MessageHandler(discord.Client):
                         "Bytes": image_data
                     })
                 except BaseException as exp:
-                    await message.reply(str(exp), mention_author=True)    
-
-                await message.reply(str(responce), mention_author=True)
+                    print(str(exp))
 
                 if responce["ModerationLabels"]:
                     foundDisallowedContent = False
