@@ -82,7 +82,12 @@ output "ecs-task-role-arn" {
   value = aws_iam_role.ecs-task-role.arn
 }
 
-output "ecs-cluster-name-arn" {
+output "ecs-cluster-arn" {
   description = "ECS Cluster ARN to run the ECS Task"
   value = aws_ecs_cluster.main-ecs-cluster.arn
+}
+
+output "ecr-repo-name" {
+  description = "ECS Cluster ARN to run the ECS Task"
+  value = aws_ecr_repository.main-ecr-repo.name
 }

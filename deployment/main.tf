@@ -25,12 +25,18 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
     {
       name = "main-service"
       essential = true
-      image = ""
+      image = "${var.ecr-repo-name}:${var.ecs-task-image-tag}"
       cpu = 256
       memory = 512
       requires_compatibilities = "FARGATE"
-      task_role_arn = aws_iam_role.ecs-task-role.arn
+      task_role_arn = var.ecs-task-role-arn
       track_latest = true
     }
   ])
+}
+
+resource "aws_ecs_service" "ecs-main-task-service" {
+  name = "main-service"
+  cluster = var.ecs-cluster-arn
+  task_definition = aws_ecs_task_definition.ecs-main-task-definition.arn
 }

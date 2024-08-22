@@ -32,3 +32,40 @@ stages:
         repositoryName: 'chatroom-moderator-repository'
         pushTag: '$(Build.SourceVersion)'
         removeDockerImage: true
+
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    variables:
+    - name: ECS_TASK_ROLE_ARN
+      value: ''
+    - name: ECS_CLUSTER_ARN
+      value: ''
+    - name: ECR_REPO_NAME
+      value: ''
+    steps:
+    - task: AWSShellScript@1
+      displayName: Collect infrastructure information
+      inputs:
+        awsCredentials: 'aws-user'
+        regionName: 'ap-south-1'
+        scriptType: 'inline'
+        inlineScript: |
+          cd iac
+          terraform init
+          echo "##vso[task.setvariable variable=ECS_TASK_ROLE_ARN]$(terraform output -raw ecs-task-role-arn)"
+          echo "##vso[task.setvariable variable=ECS_CLUSTER_ARN]$(terraform output -raw ecs-cluster-arn)"
+          echo "##vso[task.setvariable variable=ECR_REPO_NAME]$(terraform output -raw ecr-repo-name)"
+
+    - task: AWSShellScript@1
+      displayName: Deploy
+      inputs:
+        awsCredentials: 'aws-user'
+        regionName: 'ap-south-1'
+        scriptType: 'inline'
+        inlineScript: |
+          cd deployment
+          echo ECS TASK Role ARN is $(ECS_TASK_ROLE_ARN)
+          echo ECS cluster name is $(ECS_CLUSTER_ARN)
+          echo ECR repo ARN is $(ECR_REPO_NAME)
