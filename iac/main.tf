@@ -9,8 +9,8 @@ terraform {
 
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-        version = "~> 5.0"
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
   }
 }
@@ -22,7 +22,7 @@ provider "aws" {
 resource "aws_ecs_cluster" "main-ecs-cluster" {
   name = "chatroom-moderator-cluster"
   setting {
-    name = "containerInsights"
+    name  = "containerInsights"
     value = "enabled"
   }
 }
@@ -32,8 +32,8 @@ resource "aws_ecr_repository" "main-ecr-repo" {
 }
 
 resource "aws_ssm_parameter" "discord-bot-secret-token" {
-  name = "/discord/bot/secret-token"
-  type = "SecureString"
+  name  = "/discord/bot/secret-token"
+  type  = "SecureString"
   value = "place holder"
 }
 
@@ -79,15 +79,15 @@ resource "aws_iam_role" "ecs-task-role" {
 
 output "ecs-task-role-arn" {
   description = "Role ARN of the ECS Task"
-  value = aws_iam_role.ecs-task-role.arn
+  value       = aws_iam_role.ecs-task-role.arn
 }
 
 output "ecs-cluster-arn" {
   description = "ECS Cluster ARN to run the ECS Task"
-  value = aws_ecs_cluster.main-ecs-cluster.arn
+  value       = aws_ecs_cluster.main-ecs-cluster.arn
 }
 
 output "ecr-repo-url" {
   description = "ECS Cluster ARN to run the ECS Task"
-  value = aws_ecr_repository.main-ecr-repo.repository_url
+  value       = aws_ecr_repository.main-ecr-repo.repository_url
 }

@@ -1,29 +1,29 @@
 variable "region" {
-  type = string
+  type        = string
   description = "AWS Region"
 }
 
 variable "project-name" {
-  type = string
+  type        = string
   description = "Name of this project"
 }
 
 variable "ecr-repo-url" {
-  type = string
+  type        = string
   description = "ECR Repository URL"
 }
 
 variable "ecs-task-image-tag" {
-  type = string
+  type        = string
   description = "Docker image tag for ECS task main container"
 }
 
 variable "ecs-cluster-arn" {
-  type = string
+  type        = string
   description = "ECS Cluster ARN"
 }
 
 variable "ecs-task-role-arn" {
-  type = string
+  type        = string
   description = "ECS Task Role ARN"
 }
