@@ -57,7 +57,6 @@ class MessageHandler(discord.Client):
 
 client = MessageHandler(intents=intents)
 
-botToken = ssm_client.get_parameter(Name="/discord/bot/secret-token")["Parameter"]["Value"]
-
+botToken = ssm_client.get_parameter(Name="/discord/bot/secret-token", WithDecryption = True)["Parameter"]["Value"]
 
 client.run(botToken)
