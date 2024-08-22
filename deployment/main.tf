@@ -27,13 +27,12 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
       essential = true
       image = "${var.ecr-repo-url}:${var.ecs-task-image-tag}"
       cpu = 256
-      memory = 512
-      requires_compatibilities = "FARGATE"
-      task_role_arn = var.ecs-task-role-arn
-      
+      memory = 512    
     }
   ])
   track_latest = true
+  requires_compatibilities = "FARGATE"
+  task_role_arn = var.ecs-task-role-arn
 }
 
 resource "aws_ecs_service" "ecs-main-task-service" {
