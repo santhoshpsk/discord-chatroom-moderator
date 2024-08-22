@@ -26,7 +26,14 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
       name      = "main-container"
       essential = true
       image     = "${var.ecr-repo-url}:${var.ecs-task-image-tag}"
-
+      logConfiguration = {
+        logDriver = "awslogs"
+        options = {
+          "awslogs-group"         = "/discord-chatroom-moderator/logs"
+          "awslogs-region"        = var.region
+          "awslogs-stream-prefix" = "ecs"
+        }
+      }
     }
   ])
   cpu                      = 256
