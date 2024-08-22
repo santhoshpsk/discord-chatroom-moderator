@@ -14,4 +14,4 @@ COPY . $WORKDIR
 
 RUN . $PY_VENV_DIR/bin/activate && pip install --no-cache-dir -r requirement.pip && deactivate
 
-CMD [".", "${PY_VENV_DIR}/bin/activate", "&&", "python", "main.py"]
+CMD "source ${PY_VENV_DIR}/bin/activate && python main.py"
