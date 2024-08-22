@@ -45,6 +45,7 @@ resource "aws_ecs_service" "ecs-main-task-service" {
   desired_count   = 1
   deployment_minimum_healthy_percent = 0
   deployment_maximum_percent = 100
+  launch_type = "FARGATE"
   network_configuration {
     subnets = [ "subnet-08e8d2810407d278e", "subnet-01f289488c6519ff7", "subnet-066087ec4b842a144" ]
     security_groups = [ "sg-003e192f9c31257bc" ]
