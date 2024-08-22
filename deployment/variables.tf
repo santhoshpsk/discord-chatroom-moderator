@@ -10,7 +10,7 @@ variable "project-name" {
 
 variable "ecr-repo-url" {
   type = string
-  description = "ECR Repository name"
+  description = "ECR Repository URL"
 }
 
 variable "ecs-task-image-tag" {
