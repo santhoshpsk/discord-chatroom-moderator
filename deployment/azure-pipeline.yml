@@ -35,6 +35,7 @@ stages:
 
   - job: Deploy
     displayName: Deploy
+    dependsOn: Build
     pool:
       vmImage: ubuntu-latest
     variables:
