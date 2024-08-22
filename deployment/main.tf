@@ -23,20 +23,21 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
   family = "chatroom-moderator-service"
   container_definitions = jsonencode([
     {
-      name = "main-service"
+      name = "main-container"
       essential = true
       image = "${var.ecr-repo-url}:${var.ecs-task-image-tag}"
       cpu = 256
       memory = 512
       requires_compatibilities = "FARGATE"
       task_role_arn = var.ecs-task-role-arn
-      track_latest = true
+      
     }
   ])
+  track_latest = true
 }
 
 resource "aws_ecs_service" "ecs-main-task-service" {
-  name = "main-service"
+  name = "chatroom-moderator-service"
   cluster = var.ecs-cluster-arn
   task_definition = aws_ecs_task_definition.ecs-main-task-definition.arn
 }
