@@ -28,7 +28,7 @@ class MessageHandler(discord.Client):
                 if image_data_size > 5.0:
                     print(f"Image size is {round(image_data_size,2)} MB which is greater than 5 MB. Resizing....")
                     img_bytesIO = Image.open(BytesIO(image_data))
-                    img_bytesIO.thumbnail((img_bytesIO.width // (5.0 / image_data_size), img_bytesIO.height // (5.0 / image_data_size)), Image.ANTIALIAS)
+                    img_bytesIO.thumbnail((img_bytesIO.width // (5.0 / image_data_size), img_bytesIO.height // (5.0 / image_data_size)), Image.Resampling.LANCZOS)
                     output = BytesIO()
                     img_bytesIO.save(output, format=img_bytesIO.format)
                     image_data = output.getvalue()
