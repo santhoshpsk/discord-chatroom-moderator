@@ -89,5 +89,5 @@ output "ecs-cluster-arn" {
 
 output "ecr-repo-url" {
   description = "ECS Cluster ARN to run the ECS Task"
-  value = aws_ecr_repository.main-ecr-repo.url
+  value = aws_ecr_repository.main-ecr-repo.repository_url
 }
