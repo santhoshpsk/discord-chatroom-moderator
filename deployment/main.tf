@@ -44,7 +44,7 @@ resource "aws_ecs_service" "ecs-main-task-service" {
   task_definition = aws_ecs_task_definition.ecs-main-task-definition.arn
   desired_count   = 1
   network_configuration {
-    subnets = [ "subnet-08e8d2810407d278e", "subnet-01f289488c6519ff7", "subnet-066087ec4b842a144" ]
+    subnets = [ "subnet-08e8d2810407d278e" ]
     security_groups = [ "sg-003e192f9c31257bc" ]
     assign_public_ip = true
   }
