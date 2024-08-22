@@ -71,5 +71,13 @@ stages:
           echo ECS cluster name is $(ECS_CLUSTER_ARN)
           echo ECR repo URL is $(ECR_REPO_URL)
           terraform init
-          terraform plan
-          terraform apply -var ecr-repo-url=$(ECR_REPO_URL) -var ecs-task-image-tag=$(Build.SourceVersion) -var ecs-cluster-arn=$(ECS_CLUSTER_ARN) -var ecs-task-role-arn=$(ECS_TASK_ROLE_ARN) -auto-approve
+          terraform plan \
+            -var 'ecr-repo-url=$(ECR_REPO_URL)' \
+            -var 'ecs-task-image-tag=$(Build.SourceVersion)' \
+            -var 'ecs-cluster-arn=$(ECS_CLUSTER_ARN)' \
+            -var 'ecs-task-role-arn=$(ECS_TASK_ROLE_ARN)'
+          terraform apply -auto-approve \
+            -var 'ecr-repo-url=$(ECR_REPO_URL)' \
+            -var 'ecs-task-image-tag=$(Build.SourceVersion)' \
+            -var 'ecs-cluster-arn=$(ECS_CLUSTER_ARN)' \
+            -var 'ecs-task-role-arn=$(ECS_TASK_ROLE_ARN)'
