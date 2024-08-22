@@ -8,7 +8,7 @@ variable "project-name" {
   description = "Name of this project"
 }
 
-variable "ecr-repo-name" {
+variable "ecr-repo-url" {
   type = string
   description = "ECR Repository name"
 }

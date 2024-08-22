@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
     {
       name = "main-service"
       essential = true
-      image = "${var.ecr-repo-name}:${var.ecs-task-image-tag}"
+      image = "${var.ecr-repo-url}:${var.ecs-task-image-tag}"
       cpu = 256
       memory = 512
       requires_compatibilities = "FARGATE"
