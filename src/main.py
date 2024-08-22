@@ -40,9 +40,7 @@ class MessageHandler(discord.Client):
                     output.seek(0)
                 
                 try:
-                    responce = rekog_client.detect_moderation_labels(Image={
-                        "Bytes": image_data
-                    })
+                    responce = rekog_client.detect_moderation_labels(Image={"Bytes": image_data})
                 except BaseException as exp:
                     print(str(exp))
 
