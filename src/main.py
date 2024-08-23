@@ -43,6 +43,8 @@ class MessageHandler(discord.Client):
                     responce = rekog_client.detect_moderation_labels(Image={"Bytes": image_data})
                 except BaseException as exp:
                     print(str(exp))
+                
+                await message.reply(str(responce))
 
                 if responce["ModerationLabels"]:
                     foundDisallowedContent = False
