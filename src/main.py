@@ -25,26 +25,21 @@ class MessageHandler(discord.Client):
                 image_url = attachment.url
                 image_data = requests.get(url=image_url).content
                 image_data_size = sys.getsizeof(image_data)/1024/1024
-                await message.reply(f"Image size is {round(image_data_size,2)} MB.")
                 if image_data_size > 5.0:
-                    await message.reply(f"Image size is {round(image_data_size,2)} MB which is greater than 5 MB. Resizing....")
+                    print(f"Image size is {round(image_data_size,2)} MB which is greater than 5 MB. Resizing....")
                     img_bytesIO = Image.open(BytesIO(image_data))
-                    await message.reply("Before Resize")
                     img_bytesIO.thumbnail((img_bytesIO.width // (5.0 / image_data_size), img_bytesIO.height // (5.0 / image_data_size)), Image.Resampling.LANCZOS)
-                    await message.reply("After Resize")
                     output = BytesIO()
                     img_bytesIO.save(output, format=img_bytesIO.format)
                     image_data = output.getvalue()
                     new_image_data_size = sys.getsizeof(image_data)/1024/1024
-                    await message.reply(f"Image size after resize: {round(new_image_data_size,2)} MB")
+                    print(f"Image size after resize: {round(new_image_data_size,2)} MB")
                     output.seek(0)
                 
                 try:
                     responce = rekog_client.detect_moderation_labels(Image={"Bytes": image_data})
                 except BaseException as exp:
                     print(str(exp))
-                
-                await message.reply(str(responce))
 
                 if responce["ModerationLabels"]:
                     foundDisallowedContent = False
