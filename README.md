@@ -137,6 +137,8 @@ terraform {
 3. **Trigger Deployment:**
    - Trigger the pipeline in Azure DevOps to deploy the bot application to AWS ECS.
 
+![CI/CD](<assets/ci-cd.gif>)
+
 ## Source Code
 
 The `src/` directory contains the source code for the Discord bot:
