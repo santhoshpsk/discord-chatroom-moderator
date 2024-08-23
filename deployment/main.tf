@@ -36,8 +36,8 @@ resource "aws_ecs_task_definition" "ecs-main-task-definition" {
       }
     }
   ])
-  cpu                      = 256
-  memory                   = 512
+  cpu                      = 2048
+  memory                   = 2048
   track_latest             = true
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
