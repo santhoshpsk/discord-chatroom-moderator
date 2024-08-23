@@ -25,18 +25,18 @@ class MessageHandler(discord.Client):
                 image_url = attachment.url
                 image_data = requests.get(url=image_url).content
                 image_data_size = sys.getsizeof(image_data)/1024/1024
-                print(f"Image size is {round(image_data_size,2)} MB.")
+                await message.reply(f"Image size is {round(image_data_size,2)} MB.")
                 if image_data_size > 5.0:
-                    print(f"Image size is {round(image_data_size,2)} MB which is greater than 5 MB. Resizing....")
+                    await message.reply(f"Image size is {round(image_data_size,2)} MB which is greater than 5 MB. Resizing....")
                     img_bytesIO = Image.open(BytesIO(image_data))
-                    print("Before Resize")
+                    await message.reply("Before Resize")
                     img_bytesIO.thumbnail((img_bytesIO.width // (5.0 / image_data_size), img_bytesIO.height // (5.0 / image_data_size)), Image.Resampling.LANCZOS)
-                    print("After Resize")
+                    await message.reply("After Resize")
                     output = BytesIO()
                     img_bytesIO.save(output, format=img_bytesIO.format)
                     image_data = output.getvalue()
                     new_image_data_size = sys.getsizeof(image_data)/1024/1024
-                    print(f"Image size after resize: {round(new_image_data_size,2)} MB")
+                    await message.reply(f"Image size after resize: {round(new_image_data_size,2)} MB")
                     output.seek(0)
                 
                 try:
